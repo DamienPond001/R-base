@@ -11,9 +11,10 @@ pool:
 
 variables:
   dockerId: pondsregistry  # Replace with your Docker ID for Docker Hub or the admin user name for the Azure Container Registry
-  imageName: R-base  # Replace with the name of the image you want to publish
+  imageName: r-base  # Replace with the name of the image you want to publish
 
 steps:
 - script: |
     docker build -t $(dockerId).azurecr.io/$(imageName) .
     docker login -u $(dockerId) -p $(dockerPassword) $(dockerId).
+    docker push $(dockerId).azurecr.io/$(imageName)
